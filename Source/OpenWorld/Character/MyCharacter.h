@@ -11,7 +11,7 @@ class UInputMappingContext;
 class UCameraComponent;
 class USpringArmComponent;
 
-UCLASS()
+UCLASS(config=game)
 class OPENWORLD_API AMyCharacter : public ACharacter
 {
 	GENERATED_BODY()
@@ -27,7 +27,7 @@ protected:
 	UCameraComponent* CameraComponent;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Input")
-	UInputMappingContext* DefaultMappingContext;
+	UInputMappingContext* MappingContext;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Input")
 	UInputAction* JumpAction;
@@ -48,5 +48,7 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	virtual void NotifyControllerChanged() override;
 	
 };
